@@ -57,13 +57,19 @@ const App = () => {
     setTodoList((prevTodoList) => ({ ...prevTodoList, [newTodo.id]: newTodo }));
   };
 
+  const handleDeleteToDo = (id) => {
+    const updatedTodoList = { ...todoList };
+    delete updatedTodoList[id]; // Remove the item with the matching id
+    setTodoList(updatedTodoList);
+  }
+
   return (
     <>
       <div className='container'>
         <Header></Header>
         {/* Loop through the todoList object and populate TodoItem components */}
         {Object.entries(todoList).map(([id, todo]) => (
-          todo.title.length > 0 && <TodoItem key={id} status={todo.status} text={todo.title} />
+          todo.title.length > 0 && <TodoItem key={id} id={id} status={todo.status} text={todo.title} onDeleteTodo={handleDeleteToDo} />
         ))}
         <AddTodo isAddTodoEnabled={isAddTodoEnabled} onSaveTodo={handleAddTodo} onDiscardTodo={handleDiscardTodo}></AddTodo>
         <button className="todo-button" onClick={handleAddTodoItem}>Add Todo</button>

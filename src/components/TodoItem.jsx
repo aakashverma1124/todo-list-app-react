@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "./Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faSquareCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const TodoItem = (props) => {
 
@@ -36,6 +36,10 @@ const TodoItem = (props) => {
         setEditText(event.target.value);
     };
 
+    const handleDeleteClick = () => {
+        props.onDeleteTodo(props.id);
+    };
+
     return (
         <li className="todo-item">
             <span>
@@ -56,6 +60,7 @@ const TodoItem = (props) => {
                     ) : (
                     <FontAwesomeIcon icon={faPenToSquare} className="todo-item-action-icon" onClick={handleEditClick} />
                 )}
+                <FontAwesomeIcon icon={faTrash} className="todo-item-action-icon" onClick={handleDeleteClick} />
                 <Button classname={buttonClass} title={buttonText} />
             </span>
         </li>
