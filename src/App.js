@@ -1,6 +1,5 @@
 import React, { useState } from 'react'; 
 import './App.css';
-import Button from './components/Button';
 import Header from './components/Header';
 import TodoItem from './components/TodoItem';
 import './style.css';
